@@ -1,4 +1,5 @@
 #pragma once
+#include "Shape.h"
 /*
 * enum HSLAPixel {
 	blue = 0,
@@ -16,7 +17,7 @@ namespace uiuc {
 		YELLOW = 3,
 		WHITE = 4,
 	};
-	class Cube {
+	class Cube: public Shape {
 		public:
 			Cube(double length, HSLAPixel color);
 			

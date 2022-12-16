@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>

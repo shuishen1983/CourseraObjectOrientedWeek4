@@ -1,7 +1,7 @@
 #include "Cube.h"
 
 namespace uiuc {
-	Cube::Cube (double length, HSLAPixel color) {
+	Cube::Cube (double length, HSLAPixel color): Shape(length) {
 		length_ = length;
 		color_ = color;
 	}
