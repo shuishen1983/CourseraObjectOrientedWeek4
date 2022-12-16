@@ -42,6 +42,40 @@ std::ostream& operator<<(std::ostream& os, const Game& game) {
 
 bool Game::isMoveLegal(int I1, int I2) {
 	// is legal moves possible, sequence may not matter
+	// when stack is not empty no peek is even needed
+	if (stacks_[I1].size() == 0 && stacks_[I2].size() > 0) {
+		move(I2, I1);
+		return true;
+	}
+	else if (stacks_[I1].size() > 0 && stacks_[I2].size() == 0) {
+		move(I1, I2);
+		return true;
+	}
+	else if (stacks_[I1].size() > 0 && stacks_[I2].size() > 0) {
+		uiuc::Cube& c1(stacks_[I1].peekTop());
+		double length1 = c1.getLength();
+		uiuc::Cube& c2(stacks_[I2].peekTop());
+		double length2 = c2.getLength();
+		// when none of the cubes are of length0, in other words they are real cubes
+		if (length1 < length2) {
+			// this is legal to put cube 1 on top of cube 2
+			move(I1, I2);
+			return true;
+		}
+		else if (length1 > length2) {
+			// this is still legal if we reverse to put cube 2 on top of cube 1
+			move(I2, I1);
+			return true;
+		}
+		else {
+			// length of the cubes are equal it is not possible to place
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+	/* peek first check empty second
 	uiuc::Cube& c1(stacks_[I1].peekTop());
 	double length1 = c1.getLength();
 	//uiuc::HSLAPixel color1 = c1.getColor();
@@ -83,12 +117,16 @@ bool Game::isMoveLegal(int I1, int I2) {
 		}
 
 	}
-	return true;
+	*/
 };
 
 void Game::move(int I1, int I2) {
 	uiuc::Cube cRemoved = stacks_[I1].removeTop();
 	stacks_[I2].push_back(cRemoved);
+}
+
+void Game::legalMove(int I1, int I2) {
+
 }
 
 void Game::solve() {
@@ -97,7 +135,7 @@ void Game::solve() {
 		isMoveLegal(0, 1);
 		isMoveLegal(0, 2);
 		isMoveLegal(1, 2);
-		std::cout << *this << std::endl;
+		//std::cout << *this << std::endl;
 	}
 		
 	//}
