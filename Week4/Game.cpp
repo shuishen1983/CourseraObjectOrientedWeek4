@@ -125,9 +125,31 @@ void Game::move(int I1, int I2) {
 	stacks_[I2].push_back(cRemoved);
 }
 
-void Game::legalMove(int I1, int I2) {
+void Game::moveCube(Stack& source, Stack& target) {
+	// move the top of source stack to target stack
+	uiuc::Cube cRemoved = source.removeTop();
+	target.push_back(cRemoved);
+};
+
+void Game::recursiveMove(unsigned start, unsigned end, Stack& source, Stack& target, Stack& spare, unsigned depth) {
+	std::cout << "Planning (depth=" << depth++ << "):Move";
+	// Check if we are only moving one cube
+	if (start == end) {
+		// If so, move it directly:
+		moveCube(source, target);
+
+	}
+	else {
+		// otherwise use recursive move strategy:
+		recursiveMove(start + 1, end  , source, spare , target, depth);
+		recursiveMove(start    , start, source, target, spare, depth);
+		recursiveMove(start + 1, end  , spare, target, source, depth);
+	}
 
 }
+
+
+
 
 void Game::solve() {
 	while (stacks_[2].size() != 4) {
@@ -163,4 +185,8 @@ void Game::solve() {
 	stacks_[2].push_back(cRemoved7);
 	*/
 	
+};
+
+void Game::recursiveSolve() {
+	recursiveMove(0, 3, stacks_.at(0), stacks_.at(2), stacks_.at(1),0);
 };

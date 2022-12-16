@@ -10,7 +10,11 @@ public:
 
 	void move(int I1, int I2);
 
-	void legalMove(int I1, int I2);
+	void moveCube(Stack& source, Stack& target);
+
+	void recursiveMove(unsigned start, unsigned end, Stack & source, Stack & target, Stack & spare, unsigned depth);
+
+	void recursiveSolve();
 
 	friend std::ostream& operator<<(std::ostream& os, const Game& game);
 private:
