@@ -55,7 +55,6 @@ int main() {
 	Game GameHanoi;
 	std::cout << "Initial game state: " << std::endl;
 	std::cout << GameHanoi << std::endl;
-	bool IsMoveLegal = GameHanoi.isMoveLegal(1, 0);
 	GameHanoi.solve();
 	std::cout << "Terminal game state: " << std::endl;
 	std::cout << GameHanoi << std::endl;

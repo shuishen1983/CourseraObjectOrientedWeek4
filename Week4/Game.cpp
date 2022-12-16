@@ -41,7 +41,7 @@ std::ostream& operator<<(std::ostream& os, const Game& game) {
 };
 
 bool Game::isMoveLegal(int I1, int I2) {
-	//
+	// is legal moves possible, sequence may not matter
 	uiuc::Cube& c1(stacks_[I1].peekTop());
 	double length1 = c1.getLength();
 	//uiuc::HSLAPixel color1 = c1.getColor();
@@ -51,10 +51,17 @@ bool Game::isMoveLegal(int I1, int I2) {
 	if (length1 == 0 || length2 == 0) {
 		// when any of the cubes are of length 0, in other words empty
 		if (length1 > 0 && length2 == 0) {
-			//when cube 2 is empty, cube 1 is not empty it is legal to put cube 1 on top of cube 2
+			//when cube 2 is empty, cube 1 is not empty it is legal to put cube 1 on top of cube 2 (empty)
+			move(I1, I2);
+			return true;
+		}
+		else if (length1 == 0 && length2 > 0) {
+			//when cube 1 is empty, cube 2 is not empty it is legal to put cube 2 on top of cube 1 (empty)
+			move(I2, I1);
 			return true;
 		}
 		else {
+			// both cubes are empty, it is not possible to move
 			return false;
 		}
 	}
@@ -62,9 +69,16 @@ bool Game::isMoveLegal(int I1, int I2) {
 		// when none of the cubes are of length0, in other words they are real cubes
 		if (length1 < length2) {
 			// this is legal to put cube 1 on top of cube 2
+			move(I1, I2);
+			return true;
+		}
+		else if (length1 > length2) {
+			// this is still legal if we reverse to put cube 2 on top of cube 1
+			move(I2, I1);
 			return true;
 		}
 		else {
+			// length of the cubes are equal it is not possible to place
 			return false;
 		}
 
@@ -72,8 +86,24 @@ bool Game::isMoveLegal(int I1, int I2) {
 	return true;
 };
 
+void Game::move(int I1, int I2) {
+	uiuc::Cube cRemoved = stacks_[I1].removeTop();
+	stacks_[I2].push_back(cRemoved);
+}
+
 void Game::solve() {
-	//move the first three cubes to the second stack
+	while (stacks_[2].size() != 4) {
+	//for (int i = 0; i < 3; i++) {
+		isMoveLegal(0, 1);
+		isMoveLegal(0, 2);
+		isMoveLegal(1, 2);
+		std::cout << *this << std::endl;
+	}
+		
+	//}
+	
+	/*
+	* //move the first three cubes to the second stack
 	bool IsMoveLegal1 = isMoveLegal(0, 1); // this is legal because stack 1 is empty
 	uiuc::Cube cRemoved1 = stacks_[0].removeTop();
 	stacks_[1].push_back(cRemoved1);
@@ -93,4 +123,6 @@ void Game::solve() {
 	stacks_[2].push_back(cRemoved6);
 	uiuc::Cube cRemoved7 = stacks_[1].removeTop();
 	stacks_[2].push_back(cRemoved7);
+	*/
+	
 };
