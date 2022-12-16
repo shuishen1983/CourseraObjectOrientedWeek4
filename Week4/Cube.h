@@ -14,6 +14,7 @@ namespace uiuc {
 		ORANGE = 1,
 		PURPLE = 2,
 		YELLOW = 3,
+		WHITE = 4,
 	};
 	class Cube {
 		public:
@@ -26,6 +27,8 @@ namespace uiuc {
 			double getVolume() const;
 
 			double getSurfaceArea() const;
+
+			HSLAPixel getColor() const;
 
 	private:
 		double length_;

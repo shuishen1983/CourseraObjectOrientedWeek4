@@ -20,16 +20,37 @@ void Stack::pop_front() {
 
 uiuc::Cube Stack::removeTop() {
 	// removeTop function will first return the top of the stack as return value and then remove the top from the stack.
-	int IdxTop = cubes_.size() - 1;
-	uiuc::Cube c(cubes_[IdxTop]);
-	Stack::pop_back();
-	return c;
+	if (cubes_.size() > 0) {
+		// if stack is not empty return the top and pop the top
+		int IdxTop = cubes_.size() - 1;
+		uiuc::Cube c(cubes_[IdxTop]);
+		Stack::pop_back();
+		return c;
+	}
+	else
+	{
+		// if stack is empty return unisize white cube
+		uiuc::Cube c(0,uiuc::WHITE);
+		return c;
+	}
+	
 };
 
 uiuc::Cube& Stack::peekTop() {
-	int IdxTop = cubes_.size() - 1;
-	uiuc::Cube c(cubes_[IdxTop]);
-	return c;
+	if (cubes_.size()) {
+		// if stack is not empty return the top
+		int IdxTop = cubes_.size() - 1;
+		uiuc::Cube c(cubes_[IdxTop]);
+		return c;
+	}
+	else
+	{
+		// if stack is empty return unisize white cube
+		uiuc::Cube c(0, uiuc::WHITE);
+		return c;
+	}
+	
+	
 }
 
 unsigned Stack::size() const {

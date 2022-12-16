@@ -39,6 +39,17 @@ std::ostream& operator<<(std::ostream& os, const Game& game) {
 
 	return os;
 };
+
+bool Game::isMoveLegal(int I1, int I2) {
+	uiuc::Cube& c1(stacks_[I1].peekTop());
+	double length1 = c1.getLength();
+	//uiuc::HSLAPixel color1 = c1.getColor();
+	uiuc::Cube& c2(stacks_[I2].peekTop());
+	double length2 = c2.getLength();
+	//uiuc::HSLAPixel color2 = c2.getColor();
+	return true;
+};
+
 void Game::solve() {
 	//move the first three cubes to the second stack
 	uiuc::Cube cRemoved1 = stacks_[0].removeTop();

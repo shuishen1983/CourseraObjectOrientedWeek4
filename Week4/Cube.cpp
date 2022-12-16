@@ -22,6 +22,8 @@ namespace uiuc {
 		return 6 * length_ * length_;
 	};
 	
-		
+	HSLAPixel Cube::getColor() const {
+		return color_;
+	};
 
 }
