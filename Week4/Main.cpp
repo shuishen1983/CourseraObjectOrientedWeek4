@@ -55,5 +55,7 @@ int main() {
 	Game GameHanoi;
 	std::cout << "Initial game state: " << std::endl;
 	std::cout << GameHanoi << std::endl;
-	
+	GameHanoi.solve();
+	std::cout << "Terminal game state: " << std::endl;
+	std::cout << GameHanoi << std::endl;
 }

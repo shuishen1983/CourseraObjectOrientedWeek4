@@ -4,7 +4,7 @@
 class Game {
 public:
 	Game();
-	//void solve();
+	void solve();
 
 	friend std::ostream& operator<<(std::ostream& os, const Game& game);
 private:

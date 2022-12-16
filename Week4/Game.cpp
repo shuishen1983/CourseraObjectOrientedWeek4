@@ -39,6 +39,22 @@ std::ostream& operator<<(std::ostream& os, const Game& game) {
 
 	return os;
 };
-void solve() {
-
+void Game::solve() {
+	//move the first three cubes to the second stack
+	uiuc::Cube cRemoved1 = stacks_[0].removeTop();
+	stacks_[1].push_back(cRemoved1);
+	uiuc::Cube cRemoved2 = stacks_[0].removeTop();
+	stacks_[1].push_back(cRemoved2);
+	uiuc::Cube cRemoved3 = stacks_[0].removeTop();
+	stacks_[1].push_back(cRemoved3);
+	//move the last cube to the last stack
+	uiuc::Cube cRemoved4 = stacks_[0].removeTop();
+	stacks_[2].push_back(cRemoved4);
+	//Move the cubes on the second stack to the last stack
+	uiuc::Cube cRemoved5 = stacks_[1].removeTop();
+	stacks_[2].push_back(cRemoved5);
+	uiuc::Cube cRemoved6 = stacks_[1].removeTop();
+	stacks_[2].push_back(cRemoved6);
+	uiuc::Cube cRemoved7 = stacks_[1].removeTop();
+	stacks_[2].push_back(cRemoved7);
 };

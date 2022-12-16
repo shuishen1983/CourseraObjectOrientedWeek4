@@ -20,13 +20,15 @@ void Stack::pop_front() {
 
 uiuc::Cube Stack::removeTop() {
 	// removeTop function will first return the top of the stack as return value and then remove the top from the stack.
-	uiuc::Cube c = cubes_[0];
+	int IdxTop = cubes_.size() - 1;
+	uiuc::Cube c(cubes_[IdxTop]);
 	Stack::pop_back();
 	return c;
 };
 
 uiuc::Cube& Stack::peekTop() {
-	uiuc::Cube c = cubes_[0];
+	int IdxTop = cubes_.size() - 1;
+	uiuc::Cube c(cubes_[IdxTop]);
 	return c;
 }
 
