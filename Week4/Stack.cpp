@@ -40,8 +40,9 @@ uiuc::Cube& Stack::peekTop() {
 	if (cubes_.size()) {
 		// if stack is not empty return the top
 		int IdxTop = cubes_.size() - 1;
+		uiuc::Cube& cRef = cubes_.at(IdxTop);
 		uiuc::Cube c(cubes_[IdxTop]);
-		return c;
+		return cRef;
 	}
 	else
 	{
